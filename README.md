@@ -8,7 +8,7 @@ This web app has been developed using the popular Django framework and Bootstrap
 * Team Profile - Once logged in, users can create and update additional information About their teams
 * Chat - Allows logged users to communicate with one another
 
-* Admin Panel – admin can CRUD users
+* Admin Panel – admin can CRUD users, teams and chats
 
 ![ScreenShot](https://user-images.githubusercontent.com/66206865/131695930-648342b0-010b-44b2-a419-15ad54d47869.png)
 
