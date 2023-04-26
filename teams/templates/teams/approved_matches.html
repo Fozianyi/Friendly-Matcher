@@ -1,0 +1,16 @@
+{% extends 'teams/base.html' %}
+
+{% block content %}
+
+<h1>Approved Matches for {{ team.name }}</h1>
+{% if approved_matches %}
+    <ul>
+        {% for match in approved_matches %}
+            <li>{{ match.date }} - {{ match.my_team }} vs. {{ match.opponent }} at {{ match.venue }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No approved matches yet.</p>
+{% endif %}
+
+{% endblock %}

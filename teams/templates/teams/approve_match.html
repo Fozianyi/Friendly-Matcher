@@ -1,0 +1,24 @@
+{% extends 'teams/base.html' %}
+
+{% block content %}
+<div class="shadow p-4 mb-5 bg-body rounded">
+    <h1 style="color: black;">Match Approval</h1>
+    <p>Match: {{ match.my_team }} vs {{ match.opponent }}</p>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="status" value="{{ Match.MATCH_STATUS_APPROVED }}" id="approve" checked>
+        <label class="form-check-label" for="approve">
+          Approve
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="status" value="{{ Match.MATCH_STATUS_REJECTED }}" id="reject">
+        <label class="form-check-label" for="reject">
+          Reject
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

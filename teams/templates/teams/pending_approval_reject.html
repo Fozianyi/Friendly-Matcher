@@ -1,0 +1,14 @@
+{% extends 'teams/base.html' %}
+
+{% block content %}
+  <h2>Reject Approval</h2>
+  <p>Are you sure you want to reject the approval for {{ approval.opponent.name }} on {{ approval.match.date }} at {{ approval.match.location }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="reason">Reason for Rejection:</label>
+      <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+    </div>
+    <input type="submit" class="btn btn-danger" value="Reject">
+  </form>
+{% endblock %}

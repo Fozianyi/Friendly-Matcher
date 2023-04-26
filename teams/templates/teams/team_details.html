@@ -1,0 +1,74 @@
+{% extends 'teams/base.html' %}
+<title>{% block title %}Team Details{% endblock%} </title>
+{% block content %}
+	
+<centre>
+<div class="row">
+  <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+         Team
+       
+          <div class="card-body">
+           <h5 style="color: black;" class="card-title">{{ team.name }}</h5>
+
+           <p class="card-text">
+          	<ul>
+              <li><strong>Name: </strong>{{ team.name }}</li>
+              <li><strong>Coach: </strong>{{ team.coach }}</li>
+              <li><strong>Contact_Person: </strong><a href="{% url 'chat-home' %}?u={{ team_user.id }}">{{ team.contact_person }}</a></li>
+              <li><strong>Email: </strong>{{ team.email}}</li>
+              <li><strong>Phone Number: </strong>{{ team.phone_number }}</li>
+              <li><strong>Web: </strong><a href="{{ team.web }}">{{ team.web }}</a></li>
+              <li><strong>Has Pitch: </strong>{{ team.has_pitch }}</li>
+              <li><strong>Location: </strong>{{ team.location }}</li>
+              <li><strong>Exxpertise: </strong>{{ team.expertise }}</li>
+              <!--<li>Owner: {{ venue_owner }} </li>-->
+              <li><strong>Description: </strong>{{ team.description }}</li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title" style="color: black;">Logo/Team Photo</h5>
+        
+        {% if team.logo %}
+        <img src="{{ team.logo.url }}" width=500>
+        {% endif %}
+        <ul>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+	<br>
+
+	{% if team.logo %}
+	<img src="{{ team.logo.url }}" width=500>
+	{% endif %}
+
+
+  <button a class="pull-right btn btn-danger ng-binding" data-ng-click="deleteTeam()" has-permission="DELETE_TEAM"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete </button> &nbsp;&nbsp;&nbsp;&nbsp; 
+  
+  {% if team.created_by == request.user %}
+    <a href="{% url 'update-team' team_id=team.id %}" class="btn btn-primary">Edit Team Details</a>
+    
+  {% endif %}
+  </button>
+    </p>
+    <br/>
+  </div>
+  <br/><br/>
+</div>
+	<br/>
+
+	
+</center>
+{% endblock %}

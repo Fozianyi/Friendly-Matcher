@@ -1,0 +1,43 @@
+{% extends 'teams/base.html' %}
+
+{% block content %}
+<table>
+    <thead>
+      <tr>
+        <td><a href="{% url 'view_calendar' prev_month.year prev_month.month %}">&larr;</a></td>
+        <td colspan="5">
+          <a href="{% url 'view_calendar' first_day.year first_day.month %}">
+            {{ first_day|date:"F Y" }}
+          </a>
+        </td>
+        <td><a href="{% url 'view_calendar' next_month.year next_month.month %}">&rarr;</a></td>
+      </tr>
+      <tr>
+        <td>Sun</td>
+        <td>Mon</td>
+        <td>Tue</td>
+        <td>Wed</td>
+        <td>Thu</td>
+        <td>Fri</td>
+        <td>Sat</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for week in first_day|week_of_month:"F Y" %}
+      <tr>
+        {% for day in week %}
+        <td {% ifequal day first_day %}class="bg-info"{% endifequal %}>
+          {{ day|date:"j" }}
+          {% for match in matches %}
+          {% ifequal match.start_time|date:"j" day %}
+          <br><a href="#">{{ match.name }}</a>
+          {% endifequal %}
+          {% endfor %}
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="notification">{{ notification }}</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "users/base.html" %}
+{% block title %} Home Page {% endblock title%}
+{% block content %}
+    <div class="jumbotron" style="background-image: url(/static/img/Managers.jpg); background-size: cover; background-repeat: no-repeat; opacity: 100%;">
+        <h1 class="display-4">Welcome, {{user.first_name.title|default:'Guest'}}</h1>
+        <p class="lead" style="color: beige;">
+            This platform helps you organize friendly matches with other Football teams of your choice in Kenya hustle free.
+
+            Find an opponent of your choice for your next friendly match.
+        </p>
+        <hr class="my-4">
+        <p class="lead">
+            {% if user.is_authenticated %}
+                <a class="btn btn-primary btn-lg" href="{% url 'user-teams' %}" role="button">Get Started</a>
+            {% else %}
+                <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Sign in</a>
+            {% endif %}
+        </p>
+    </div>
+
+{% endblock content %}

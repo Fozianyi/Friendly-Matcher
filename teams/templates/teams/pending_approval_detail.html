@@ -1,0 +1,24 @@
+{% extends 'teams/base.html' %}
+
+{% block content %}
+  <h2>Pending Approval Detail</h2>
+  <p><strong>Match:</strong> {{ pending_approval.match }}</p>
+  <p><strong>Proposed Date and Time:</strong> {{ approval.match.date }}</p>
+  <p><strong>Proposed Venue:</strong> {{  pending_approval.match.venue  }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="approval">Approval:</label>
+      <select class="form-control" id="approval" name="approval">
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{% url 'pending_approvals' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}

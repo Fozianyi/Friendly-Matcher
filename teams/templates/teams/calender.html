@@ -1,0 +1,97 @@
+{% extends 'teams/base.html' %}
+<title>{% block title %}Calendar{% endblock%} </title>
+{% block content %}
+
+<center>
+<div class="row">
+  <div class="col-sm-20">
+      <div class="card">
+        <div class="card-header">
+         Calendar
+        </div>
+          <div class="card-body">
+           <h5 style="color: black;" class="card-title">{{ month_name }}</h5>
+
+           <p class="card-text">
+                <center>
+                    <h1 style="color: black;" >Hello {{ user }}! Matches For {{ month }} {{ year }}</h1>
+
+                    As of {{ time }}
+                    <br/><br/>
+
+                <h2>{{ month }} {{ year }}</h2>
+                <a href="?month={{ prev_month }}&year={{ prev_year }}">&lt;</a>
+                <a href="?month={{ next_month }}&year={{ next_year }}">&gt;</a>
+                <table>
+                <tr>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                    <th>Sun</th>
+                </tr>
+                {% for week in cal %}
+                <tr>
+                    {% for day in week %}
+                    {% if day.day %}
+                        {% if day in match_dates %}
+                            <td class="has-match">
+                                <span class="day">{{ day.day }}</span>
+                            </td>
+                        {% else %}
+                            <td>
+                                <span class="day">{{ day.day }}</span>
+                            </td>
+                        {% endif %}
+                    {% else %}
+                        <td class="empty"></td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </table>
+
+                {% if matches %}
+                <h3 style="text-align: left; color: black;">Matches this month:</h3>
+                <ul>
+                {% for match in matches %}
+                <li style="text-align: left;">{{ match.my_team }} vs {{ match.opponent }} at {{ match.venue }} on {{ match.date }}, {{ match.kick_off }}</li>
+                {% endfor %}
+                </ul>
+                {% else %}
+                <p>No matches this month.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+</center>
+
+<center>
+    <br/><br/><br/><br/>
+    Copyright (c) {{ current_year }}
+</center>
+
+{% endblock %}
+
+{% block css %}
+    <style>
+        .has-match {
+            position: relative;
+        }
+
+        .has-match:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+{% endblock %}

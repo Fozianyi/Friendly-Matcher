@@ -1,0 +1,17 @@
+{% extends 'teams/base.html' %}
+
+{% block content %}
+
+<h1>Rejected matches for {{ team.name }}</h1>
+
+{% if rejected_matches %}
+  <ul>
+    {% for match in rejected_matches %}
+      <li>{{ match.my_team.name }} vs. {{ match.opponent.name }} - {{ match.kick_off }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No rejected matches found.</p>
+{% endif %}
+
+{% endblock %}

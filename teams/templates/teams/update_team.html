@@ -1,0 +1,24 @@
+
+{% extends 'teams/base.html' %}
+<title>{% block title %}Update Team Details{% endblock%} </title>
+{% block content %}
+	<div class="shadow p-4 mb-5 bg-body rounded">
+		{% if user.is_authenticated %}
+
+			<h1>Update Team Details...</h1>
+			<br/>
+			<form action="" method=POST enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<br/>
+				<input type="submit" value="Update" class="btn btn-success">
+
+		{% else %}
+			<h1>Sorry! You Must Be Logged In To View This Page...</h1>
+
+			<a href="{% url 'users-register' %}">Login Here</a>
+		{% endif %}
+
+	</div>	
+	
+{% endblock %}

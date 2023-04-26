@@ -1,0 +1,15 @@
+{% extends 'teams/base.html' %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+   Approve
+      <h1>Approve Pending Approval</h1>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Approve</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+<center>
+    <h1>Hello {{ user }}! Matches For {{ month }} {{ year }}</h1>
+
+    As of {{ time }}
+    <br/><br/>
+    {{ cal|safe }}
+    <br/><br/>
+</center>
+    <h3>Matches This Month...</h3>
+
+    {% if matches %}
+        {% for match in matches %}
+        <div class="card">
+<div class="card-header">
+    {{ match }}
+</div>
+<div class="card-body">
+    <h5 class="card-title">match: {{ match.location }}</h5>
+    <p class="card-text">
+        <ul>
+    <li>Date: {{ match.date }}</li>
+
+    <li><strong>Start_time: </strong>{{ match.start_time }}</li>
+	<li><strong>End_time: </strong>{{ match.end_time }}</li>
+	<li><strong>Team A: </strong>{{ match.team_a }}</li>
+	<li><strong>Team B: </strong>{{ match.team_b}}</li>
+    </li>
+    </ul>
+
+    </p>
+</div>
+{% if match.created_by == request.user %}
+    <a href="#">Edit Match Details</a>
+  {% endif %}
+</div>
+        <br/>
+        {% endfor %}
+
+    {% else %}
+    Sorry...There are no events this month...
+    {% endif %}
+
+    <center>
+    <br/><br/><br/><br/>
+    Copyright (c) {{ current_year }}
+
+    </center>

@@ -1,0 +1,85 @@
+{% extends 'teams/base.html' %}
+<title>{% block title %}My Team{% endblock%} </title>
+{% block content %}
+	
+	<h2>My Team</h2>
+	<br/>
+    {% if teams %}
+	{% for team in teams %}
+
+  <div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header">
+           Team
+         
+            <div class="card-body">
+             <h5 style="color: black;" class="card-title">{{ team.name }}</h5>
+  
+             <p class="card-text">
+              <ul>
+                <li><strong>Name: </strong>{{ team.name }}</li>
+                <li><strong>Coach: </strong>{{ team.coach }}</li>
+                <li><strong>Contact_Person: </strong><a href="{% url 'chat-home' %}?u={{ team_user.id }}">{{ team.contact_person }}</a></li>
+                <li><strong>Email: </strong>{{ team.email}}</li>
+                <li><strong>Phone Number: </strong>{{ team.phone_number }}</li>
+                <li><strong>Web: </strong><a href="{{ team.web }}">{{ team.web }}</a></li>
+                <li><strong>Has Pitch: </strong>{{ team.has_pitch }}</li>
+                <li><strong>Location: </strong>{{ team.location }}</li>
+                <li><strong>Exxpertise: </strong>{{ team.expertise }}</li>
+                <li><strong>Description: </strong>{{ team.description }}</li>
+  
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title" style="color: black;">Logo/Team Photo</h5>
+         
+          {% if team.logo %}
+          <img src="{{ team.logo.url }}" width=500>
+          {% endif %}
+          <ul>
+            <li><a href="{% url 'approved_matches' team.id %}">Approved Matches</a></li>
+            <li><a href="{% url 'rejected_matches' team.id %}">Rejected Matches</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+	{% if team.logo %}
+	<img src="{{ team.logo.url }}" width=500>
+	{% endif %}
+
+
+
+    </p>
+  </div>
+  {% if user.is_authenticated %}
+    {% if team.created_by == request.user %}
+      <div class="card-footer text-muted">
+        
+        <a href="{% url 'update-team' team.id %}" class="btn btn-primary">Update Details</a>
+
+
+        
+      </div>
+    {% endif %}  
+  {% endif %}
+    {% endfor %}
+
+    {% else %}
+    <div class="shadow p-4 mb-5 bg-body rounded">
+    <p >You haven't Registered any team yet. <a href="{% url 'create-team' %}" class="btn-group">Register Team Here</a></p>
+  {% endif %}
+</div>
+{% endblock %}
+</div>
+
+
+

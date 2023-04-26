@@ -1,0 +1,45 @@
+{% extends 'teams/base.html' %}
+<title>{% block title %}Match{% endblock%} </title>
+{% block content %}
+
+<centre>
+
+<div class="card">
+  <div class="card-header">
+    Match
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ match.id }}</h5>
+    <p class="card-text">
+    	<ul>
+
+	<li><strong>Date: </strong>{{ match.date }}</li>
+	<li><strong>Kick Off: </strong>{{ match.kick_off }}</li>
+	<li><strong>My Team: </strong>{{ match.my_team }}</li>
+	<li><strong>Opponent: </strong>{{ match.opponent}}</li>
+	<li><strong>Venue: </strong>{{ match.venue }}</li>
+    
+	</ul>
+	<br>
+
+	{% if team.logo %}
+	<img src="{{ team.logo.url }}" width=500>
+	{% endif %}
+
+
+
+    </p>
+    <br/>
+  </div>
+
+
+  <br/><br/>
+  
+</div>
+<a href="{% url 'show_calendar' match.date.year match.date.month %}" class="btn btn-success btn-sm">view Calendar</a> &nbsp;&nbsp;&nbsp;&nbsp; 
+
+  {% if match.created_by == request.user %}
+    <a href="{% url 'update_schedule_match' match.id %}"  class=" btn btn-primary btn-sm">Edit Match Details</a>
+  {% endif %}
+</center>
+{% endblock %}

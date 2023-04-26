@@ -1,0 +1,14 @@
+<title>{% block title %}Match Results{% endblock%} </title>
+{% block content %}
+
+<h1>Add Match Result</h1>
+<h2>{{ match.my_team }} vs {{ match.opponent }}</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
