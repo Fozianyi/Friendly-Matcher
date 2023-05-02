@@ -10,7 +10,7 @@ This web app has been developed using the popular Django framework and Bootstrap
 
 * Admin Panel – admin can CRUD users, teams and chats
 
-![ScreenShot](https://user-images.githubusercontent.com/66206865/131695930-648342b0-010b-44b2-a419-15ad54d47869.png)
+![ScreenShot](https://user-images.githubusercontent.com/113293567/235725373-be335b08-b51a-4450-8503-c3e22a2c4ba3.png)
 
 
 
